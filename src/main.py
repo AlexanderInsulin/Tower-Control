@@ -18,10 +18,12 @@ def main():
     # move somewhere
     my_game.loadLevel()
     main_cam.reset(my_game.width, my_game.height, 
-        my_game.tilewidth, my_game.tileheight)
+        500, 500)
 
     clock = pygame.time.Clock()
     while True:
+        delta = clock.tick(60)
+        delta /= 1000.0
         event = pygame.event.poll()
         if event.type == pygame.QUIT:
             break;
@@ -29,17 +31,16 @@ def main():
             if event.key == K_q:
                 pygame.event.post(pygame.event.Event(QUIT))
 
-        my_game.update()
-        main_cam.update()
+        my_game.update(delta)
+        main_cam.update(delta)
         vis.draw(screen, my_game, main_cam)
-
         
         the_text = my_font.render("FPS = {0:.2f}"
                   .format(clock.get_fps()), True, (100, 0, 0))
         screen.blit(the_text, (10, 10))
 
         pygame.display.flip()
-        clock.tick(60)
+        
 
     pygame.quit()
 

@@ -20,5 +20,5 @@ class Game:
             self.background_color = self.level.tiled_map.background_color
         return
 
-    def update(self):
+    def update(self, delta):
         return
