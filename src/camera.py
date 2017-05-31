@@ -1,19 +1,41 @@
 import pygame
 from pygame.locals import *
 
-key_to_direction = {
-    K_UP: (0, -1),
-    K_DOWN: (0, 1),
-    K_RIGHT: (-1, 0),
-    K_LEFT: (1, 0),
-}
-
 class Camera:
-    def __init__(self):
+    def __init__(self, screen_width, screen_height):
         self.x = 0
         self.y = 0
+        self.max_x = 0
+        self.max_y = 0
+        self.width = screen_width
+        self.height = screen_height
+        self.step_x = 0
+        self.step_y = 0
         return
-    def update(self, key):
-        self.x = self.x + key_to_direction[key][0]*16
-        self.y = self.y + key_to_direction[key][1]*16
+    
+    def update(self):
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_UP]: 
+            self.y = self.y - self.step_y;
+        if keys[pygame.K_DOWN]: 
+            self.y = self.y + self.step_y;           
+        if keys[pygame.K_LEFT]: 
+            self.x = self.x - self.step_x;
+        if keys[pygame.K_RIGHT]: 
+            self.x = self.x + self.step_x;
+        if self.x < 0:
+            self.x = 0
+        if self.x > (self.max_x - self.width):
+            self.x = self.max_x - self.width
+        if self.y < 0:
+            self.y = 0
+        if self.y > (self.max_y - self.height):
+            self.y = self.max_y - self.height
+        return
+
+    def reset(self, max_width, max_height, step_x, step_y):
+        self.max_x = max_width
+        self.max_y = max_height
+        self.step_x = step_x
+        self.step_y = step_y
         return
