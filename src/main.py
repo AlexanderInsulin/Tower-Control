@@ -26,7 +26,7 @@ def main():
         delta /= 1000.0
         event = pygame.event.poll()
         if event.type == pygame.QUIT:
-            break;
+            break
         elif event.type == KEYDOWN:  
             if event.key == K_q:
                 pygame.event.post(pygame.event.Event(QUIT))

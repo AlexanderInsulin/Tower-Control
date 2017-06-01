@@ -16,13 +16,13 @@ class Camera:
     def update(self, delta):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_UP]: 
-            self.y -= self.step_y*delta;
+            self.y -= self.step_y*delta
         if keys[pygame.K_DOWN]: 
-            self.y += self.step_y*delta;           
+            self.y += self.step_y*delta
         if keys[pygame.K_LEFT]: 
-            self.x -= self.step_x*delta;
+            self.x -= self.step_x*delta
         if keys[pygame.K_RIGHT]: 
-            self.x += self.step_x*delta;
+            self.x += self.step_x*delta
         if self.x < 0:
             self.x = 0
         if self.x > (self.max_x - self.width):
